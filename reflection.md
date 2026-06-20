@@ -4,7 +4,9 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 ## 1. What was broken when you started?
 
-- What did the game look like the first time you ran it?
+- What did the game look like the first time you ran it? 
+
+The game was set on difficulty normal the first time with 7 attempts allowed to guess a number between 1 and 100. There was a developer debug info menu that showed secret, attempts, score, difficulty, and history. 
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
