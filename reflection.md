@@ -6,9 +6,13 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 - What did the game look like the first time you ran it? 
 
-The game was set on difficulty normal the first time with 7 attempts allowed to guess a number between 1 and 100. There was a developer debug info menu that showed secret, attempts, score, difficulty, and history. 
+The game was set on difficulty normal the first time with 7 attempts allowed to guess a number between 1 and 100. There was a developer debug info menu that showed secret, attempts, score, difficulty, and history. There was an option to enter a guess number, submit guess, new game, and a checkmarked show hint box. There was a history that was logging each guess attempt and the hint was telling me to guess lower with each guess.
+
+
 - List at least two concrete bugs you noticed at the start  
-  (for example: "the hints were backwards").
+  (for example: "the hints were backwards").  
+  1. The first concrete bug I noticed was that on the Normal difficulty setting level, there were 7 attempts allowed to guess a number between 1 and 100 while the Easy difficulty level allowed 5 attempts to guess a number a number between 1 and 100. Lowering the difficulty resulted in less opportunity (guess attempts) to guess the number with the same range of 1 to 100, which actually makes the game harder as the difficulty level is set to an easier diffuclty level. There should be more guess attempts allowed when the difficlty level is changed from normal to easy. 
+  2. The second concrete bug I noticed was that the Normal difficulty level required guessing a number from 1 to 100 while the Hard difficulty level required guessing a number from 1 to 50. When the range of numbers to guess is smaller and there is less chance of guessing the wrong number, the game actually becomes easier on the Hard difficulty level. Therefore, there should be a range greater than 1 to 100 to guess on the hard difficulty level rather than the existing 1 to 50 range of numbers to guess. 
 
 **Bug Reproduction Log**
 
