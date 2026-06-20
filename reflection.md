@@ -16,12 +16,16 @@ The game was set on difficulty normal the first time with 7 attempts allowed to 
 
 **Bug Reproduction Log**
 
-Document at least 3 bugs you found. Add rows as needed.
+Document at least 3 bugs you found. Add rows as needed. 
+1. The first bug that I noticed was that the hint always asked me to guess a lower number no matter how low I got as I guessed 50, 20, 10, 5, 3, and 2. The secret number to guess was 91, so the application was telling me to guess a lower number each time when I was supposed to be guessing a higher number with each attempt. 
+2
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
+|50, 20, 10, 5, 3, and 2 |Expected Go Higher Hint | Actual Go Lower Hint Always | Out of attempts! The secret was 91.|
+
+|New Game. Entered new number. | Recording New Input and Giving Hints. | System says to start a new game to play again, but doesn't register new input and doesn't record guess attempts. | Console states You already won. Start a new game to play again despite attempts to start a new game.|
+
 | | | | |
 
 ---
