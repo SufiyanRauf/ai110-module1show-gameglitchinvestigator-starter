@@ -24,17 +24,38 @@ Document at least 3 bugs you found. Add rows as needed.
 |-------|-------------------|-----------------|------------------------|
 |50, 20, 10, 5, 3, and 2 |Expected Go Higher Hint | Actual Go Lower Hint Always | Out of attempts! The secret was 91.|
 
-|New Game. Entered new number. | Recording New Input and Giving Hints. | System says to start a new game to play again, but doesn't register new input and doesn't record guess attempts. | Console states You already won. Start a new game to play again despite attempts to start a new game.|
+|New Game after completing game. Entered new number. | Recording New Input and Giving Hints. | System says to start a new game to play again, but doesn't register new input and doesn't record guess attempts. | Console states You already won. Start a new game to play again despite attempts to start a new game.|
 
-| | | | |
+|Selecting New Game in the middle of current game. | Expected that all history of previous guess attempts will be deleted when a new game starts. | History of previous attempts from previous game are retained upon starting new game. | No console output/error despite the developer debug info showing that guess attempts from previous game are still a part of record. |
 
 ---
 
 ## 2. How did you use AI as a teammate?
 
-- Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+- Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)? 
+
+I used Claude for this project and added app.py and logic_utils.py as context. Claude gave me the option to diagnose and treat one bug at a time. 
+
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
-- Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+
+AI helped pinpoint the secret keeps changing statebug by pinpointing the following code in app.py: (if st.session_state.attempts % 2 == 0:
+            secret = str(st.session_state.secret)
+        else:
+            secret = st.session_state.secret). 
+The AI was correct in pinpointing this bug as on even attempts, the code is comparing an integer guess against a string 50% of the time. That is making the secret change. Working with the AI tool, I have learned that we should always be passing an integer into check_guess everytime so the correct code for even attempts should be: attempts % 2 == 0:
+            secret = int(st.session_state.secret).
+
+- Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result). 
+
+One example of an AI suggestion that was incorrect or misleading was that AI was stating that there was a hints lie bug. AI was stating that in app.py:32=47, guess (int) would be compared to secret (str), and that Python 3 would raise a Type Error that would result in a jump to the except block at line 41. I verified the result by looking in the app.py file, this was lines 36 to 40: 
+
+try:
+        if guess > secret:
+            return "Too High", "📈 Go HIGHER!"
+        else:
+            return "Too Low", "📉 Go LOWER!"
+
+As you can see, the Type Error is not creating the hints lie bug. The actual problem is that if the guess is higher than the secret, return "Go HIGHER" would always show the wrong hint and should actually be return "Go LOWER". This also applies to if the guess is lower than the secret, return "Go LOWER" should actually be "Go HIGHER" to provide an accurate bug fix. 
 
 ---
 
