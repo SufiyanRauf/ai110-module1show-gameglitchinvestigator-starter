@@ -46,6 +46,7 @@ def check_guess(guess, secret):
         if g > secret:
             return "Too High", "📉 Go LOWER!"
         return "Too Low", "📈 Go HIGHER!"
+        #FIXED: Refactored logic into app.py using agent mode
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
