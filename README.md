@@ -55,7 +55,7 @@ collected 8 items
 
 tests/test_game_logic.py ........                                [100%]
 
-========================== 8 passed in 0.95s ==========================
+========================== 8 passed in 0.79s ==========================
 ```
 
 ## 🚀 Stretch Features
