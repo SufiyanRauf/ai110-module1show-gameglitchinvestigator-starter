@@ -76,13 +76,23 @@ I reviewed the change for a bug that the AI wanted to fix, approved the change a
 
 ## 4. What did you learn about Streamlit and state?
 
-- How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+- How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit? 
+
+I would tell my friend that Streamlit app runs the entire application script from top to bottom every single time that a user interacts with the application like clicking a button or entering an input like a guess. Since the script starts over every time this happens, the normal variables are recreated again with a full reset, so this is why the secret number kept on resetting and the game felt broken. The session state is the Streamlit app's way of remembering things between each rerun (each user interaction) so the values put in st.session_state survive through each user interaction instead of being wiped. They are wiped when the user clicks new game. I learned to fix this by collaborating with the AI agent to store the game's important data in the session state and only generate teh secret once rather than having it regenerate with every user interaction. 
 
 ---
 
 ## 5. Looking ahead: your developer habits
 
-- What is one habit or strategy from this project that you want to reuse in future labs or projects?
+- What is one habit or strategy from this project that you want to reuse in future labs or projects? 
+
+One habit from this project that I want to reuse is to fix one bug at a time and writing a pytest case that targets each fix before moving on. If you fix all the bugs at once, it is hard to tell what changes fixed each specific issue and there is a possibility of introducing a new bug. On this project, I diagnosed a single bug, reviewed the diff myself, generated a test for it, and confirmed it in both pytest and the live Streamlit app. This one at a time approach helped me from introducing new bugs, which could have created an infinite loop of fixing bugs and introducing new ones. I also want to keep reviewing every AI diff before approving as AI can make mistakes and I correct it's thinking and process so that I can collaborate with AI more efficiently. 
+
   - This could be a testing habit, a prompting strategy, or a way you used Git.
-- What is one thing you would do differently next time you work with AI on a coding task?
-- In one or two sentences, describe how this project changed the way you think about AI generated code.
+- What is one thing you would do differently next time you work with AI on a coding task? 
+
+Next time, I would verify the AI's diagnosis of issues against the actual code before reviewing AI diffs. If there is no issue or if AI has the wrong process about why a bug exists, there exists a risk of introducing a new bug or fixing the bug in an incomplete way. On this project, the AI claimed the backwards hints bug came from a TypeError in the try/except block, but when I reviewed the lines myself the real problem was just the Higher/Lower messages being swapped. I'd ask AI to point to the exact lines that it found problematic and explain its reasoning so I can catch the confident but wrong hallucination explanations earlier. 
+
+- In one or two sentences, describe how this project changed the way you think about AI generated code. 
+
+This project showed me that AI and AI-generated code can look polished and ready with confidence, but AI can actually make mistakes that requires a human being to review and ensure that the code is working properly. I now treat AI code as a rough draft rather than the final answer as it is a partner that can help me idenfity issues earlier, but I still need to rely on my own testing and code review to decided whether a bug has actually been fixed or not. 
