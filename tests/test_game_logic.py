@@ -1,16 +1,38 @@
-from logic_utils import check_guess
+from app import check_guess
+
 
 def test_winning_guess():
-    # If the secret is 50 and guess is 50, it should be a win
-    result = check_guess(50, 50)
-    assert result == "Win"
+    outcome, message = check_guess(50, 50)
+    assert outcome == "Win"
 
-def test_guess_too_high():
-    # If secret is 50 and guess is 60, hint should be "Too High"
-    result = check_guess(60, 50)
-    assert result == "Too High"
 
-def test_guess_too_low():
-    # If secret is 50 and guess is 40, hint should be "Too Low"
-    result = check_guess(40, 50)
-    assert result == "Too Low"
+def test_guess_too_high_says_go_lower():
+    # Guess is above the secret -> player must go LOWER.
+    outcome, message = check_guess(60, 50)
+    assert outcome == "Too High"
+    assert "LOWER" in message
+    assert "HIGHER" not in message
+
+
+def test_guess_too_low_says_go_higher():
+    # Guess is below the secret -> player must go HIGHER.
+    outcome, message = check_guess(40, 50)
+    assert outcome == "Too Low"
+    assert "HIGHER" in message
+    assert "LOWER" not in message
+
+
+def test_too_high_hint_direction_string_secret():
+    # App stringifies the secret on even attempts, exercising the
+    # except TypeError fallback in check_guess.
+    outcome, message = check_guess(60, "50")
+    assert outcome == "Too High"
+    assert "LOWER" in message
+    assert "HIGHER" not in message
+
+
+def test_too_low_hint_direction_string_secret():
+    outcome, message = check_guess(40, "50")
+    assert outcome == "Too Low"
+    assert "HIGHER" in message
+    assert "LOWER" not in message

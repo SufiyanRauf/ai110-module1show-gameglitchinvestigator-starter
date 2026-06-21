@@ -61,10 +61,16 @@ As you can see, the Type Error is not creating the hints lie bug. The actual pro
 
 ## 3. Debugging and testing your fixes
 
-- How did you decide whether a bug was really fixed?
+- How did you decide whether a bug was really fixed? 
+I reviewed the change for a bug that the AI wanted to fix, approved the change after I reviewed the diff myself. I then told the AI to generate a pytest case to target the bug that was just fixed. I ran pytest in terminal and ran the app with streamlit run app.py to confirm the fix works in the live game. I found that my new test passed along with existing starter tests. 
+
 - Describe at least one test you ran (manual or using pytest)  
-  and what it showed you about your code.
-- Did AI help you design or understand any tests? How?
+  and what it showed you about your code. 
+  I ran pytest for fixing the backward hints bug, as the new tests call check_guess directly and assert on the hint text itself rather than just the outcome label. All five new tests passed, which showed the fix for the bug worked. This helped me confirm that the Too High or Too Low outcome labels were not the issue, rather the message LOWER or HIGHER were the actual problems. I did the Streamlit run app.py test to test the live game and can confirm that the hints would accurately tell me to go higher when my guess was too low and would tell me to go lower when my guess was too high. 
+
+- Did AI help you design or understand any tests? How?  
+  AI helped me design and understand the pytest as I told AI to generate a pytest case for each bug that we fixed together. I then ran the pytest in terminal, to see if the new test cases worked. I confirmed the bug fixes myself by running streamlit app to check if the bug fixes were successful. 
+
 
 ---
 
